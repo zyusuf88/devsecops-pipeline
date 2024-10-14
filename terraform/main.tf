@@ -1,4 +1,4 @@
-# Define the providers
+
 terraform {
   required_providers {
     aws = {
@@ -124,6 +124,14 @@ resource "aws_lb" "threat_model_app_lb" {
   load_balancer_type = "application"
   security_groups    = [aws_security_group.app_sg.id]
   subnets            = [aws_subnet.pb_subnet_1.id, aws_subnet.pb_subnet_2.id]
+
+  lifecycle {
+    prevent_destroy = true 
+  }
+
+  tags = {
+    Name = "app-lb"
+  }
 }
 
 # ALB Target Group
@@ -137,6 +145,9 @@ resource "aws_lb_target_group" "tm_tg" {
   health_check {
     path     = "/"
     protocol = "HTTP"
+
+  lifecycle {
+    prevent_destroy = true
   }
 }
 
@@ -263,6 +274,9 @@ resource "aws_iam_role" "ecs_task_execution_role" {
       Effect = "Allow",
       Principal = {
         Service = "ecs-tasks.amazonaws.com"
+
+  lifecycle {
+    prevent_destroy = true
       }
     }]
   })
