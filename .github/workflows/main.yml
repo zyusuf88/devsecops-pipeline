@@ -52,13 +52,15 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ env.AWS_REGION }}
 
+
+
+      - name: Terraform init
+        run: terraform init -upgrade
+        working-directory: ./terraform 
+
       - name: Destroy All previous resources 
         run: terraform destroy -auto-approve
         working-directory: ./terraform
-
-      - name: Terraform Init
-        run: terraform init -upgrade
-        working-directory: ./terraform 
 
       - name: Terraform Plan
         run: terraform plan
