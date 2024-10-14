@@ -6,18 +6,6 @@ It also adds a new dependency @projectstorm/react-diagrams, for further developm
 
 ![image](https://github.com/user-attachments/assets/2fec4aea-6e1b-4278-926c-1ebf4a9b702a)
 
-## Setup
-
-```bash
-yarn install
-yarn build
-yarn start
-http://localhost:3000/workspaces/default/dashboard
-
-## or
-yarn global add serve
-serve -s build
-```
 
 
 # Threat Modeling Tool - Terraform Infrastructure Setup
@@ -46,7 +34,7 @@ This project sets up a **reliable, secure, and scalable infrastructure** for the
 
 ---
 
-## Local Setup (Optional)
+## Setup
 
 1. **Clone and Install**:
    ```bash
