@@ -42,7 +42,7 @@ This project sets up a **reliable, secure, and scalable infrastructure** for the
    cd [repo-directory]
    ```
 
-2. 
+2.  **Install and Start the Application Locally**
 
 ```bash
 yarn install
@@ -50,7 +50,7 @@ yarn build
 yarn start
 http://localhost:3000/workspaces/default/dashboard
 
-## or
+## or use serve to serve the build folder:
 yarn global add serve
 serve -s build
 ```
@@ -58,9 +58,17 @@ serve -s build
 
 3. **Deploy with Terraform**
 
-``` terraform init
-terraform apply -auto-approve
-```
+- Initialize Terraform:
+`terraform init`
+
+- Review the planned changes
+`terraform plan `
+
+- Apply the Deployment
+`terraform apply`
+
+4. Once your done , don't forget to clean up resources
+`terraform destroy `
 
 
 
