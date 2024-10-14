@@ -264,7 +264,7 @@ resource "aws_ecs_service" "threat_app_service" {
 }
 
 # IAM Role and Policy Attachment for ECS Task Execution
-resource "aws_iam_role" "ecs_task_execution_role" {
+data "aws_iam_role" "ecs_task_execution_role" {
   name = "ecs-task-execution-role"
 
   assume_role_policy = jsonencode({
@@ -283,6 +283,6 @@ resource "aws_iam_role" "ecs_task_execution_role" {
 }
 
 resource "aws_iam_role_policy_attachment" "ecs_task_execution_role_policy" {
-  role       = aws_iam_role.ecs_task_execution_role.name
+  role       = data.aws_iam_role.ecs_task_execution_role.name
   policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
 }
