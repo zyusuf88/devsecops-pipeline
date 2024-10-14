@@ -145,7 +145,7 @@ resource "aws_lb_target_group" "tm_tg" {
   health_check {
     path     = "/"
     protocol = "HTTP"
-
+}
   lifecycle {
     prevent_destroy = true
   }
