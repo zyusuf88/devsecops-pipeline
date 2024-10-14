@@ -3,10 +3,10 @@ name: CI/CD Pipeline
 on:
   push:
      branches:
-  #     - 'feature/*'  
-  # pull_request:
-  #   branches:
-     - main                       
+     - main
+     paths:
+     - .github/workflows/main.yaml
+     
 
 jobs:
   setup-and-deploy:
