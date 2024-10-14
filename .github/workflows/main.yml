@@ -52,7 +52,7 @@ jobs:
           aws-region: ${{ env.AWS_REGION }}
 
       - name: Terraform Init
-        run: terraform init
+        run: terraform init -upgrade
         working-directory: ./terraform 
 
       - name: Terraform Plan
