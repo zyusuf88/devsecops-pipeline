@@ -186,7 +186,7 @@ provider "cloudflare" {
 
 #refrence exisisting ACM certificate
 data "aws_acm_certificate" "cert" {
-  domain   = "tm.zeynabyusuf.com"
+  domain   = "encord.zeynabyusuf.com"
   statuses = ["ISSUED"]
 }
 
