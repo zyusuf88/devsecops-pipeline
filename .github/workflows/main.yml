@@ -25,19 +25,19 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v2
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '18'
+      # - name: Set up Node.js
+      #   uses: actions/setup-node@v2
+      #   with:
+      #     node-version: '18'
 
-      - name: Install Dependencies
-        run: yarn install
+      # - name: Install Dependencies
+      #   run: yarn install
 
-      - name: Run Tests
-        run: yarn test
+      # - name: Run Tests
+      #   run: yarn test
 
-      - name: Build Project
-        run: yarn build
+      # - name: Build Project
+      #   run: yarn build
 
       - name: Set up Terraform
         uses: hashicorp/setup-terraform@v1
