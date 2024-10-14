@@ -29,6 +29,10 @@ jobs:
         run: terraform init -upgrade
         working-directory: ./terraform
 
+      - name: Plan Terraform Destroy
+        run: terraform plan -destroy
+        working-directory: ./terraform
+
       - name: Run Terraform Destroy
         run: terraform destroy -auto-approve
         working-directory: ./terraform
