@@ -274,12 +274,12 @@ resource "aws_iam_role" "ecs_task_execution_role" {
       Effect = "Allow",
       Principal = {
         Service = "ecs-tasks.amazonaws.com"
-
-  lifecycle {
-    prevent_destroy = true
       }
     }]
   })
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 resource "aws_iam_role_policy_attachment" "ecs_task_execution_role_policy" {
