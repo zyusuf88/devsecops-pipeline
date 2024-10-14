@@ -17,6 +17,7 @@ jobs:
       TF_VAR_acm_certificate_arn: ${{ secrets.ACM_CERTIFICATE_ARN }}
       TF_VAR_cloudflare_api_token: ${{ secrets.CLOUDFLARE_API_TOKEN }}
       TF_VAR_threat_app_container_image: ${{ secrets.THREAT_APP_CONTAINER_IMAGE }}
+      TF_VAR_cloudflare_zone_id: ${{ secrets.CLOUDFLARE_ZONE_ID }}
       TF_VAR_vpc_cidr: "10.0.0.0/16"
       TF_VAR_aws_subnet_1: "10.0.1.0/24"
       TF_VAR_aws_subnet_2: "10.0.2.0/24"
