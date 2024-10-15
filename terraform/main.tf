@@ -194,7 +194,7 @@ data "aws_acm_certificate" "cert" {
 # Cloudflare CNAME Record to Point to ALB
 resource "cloudflare_record" "alb_cname_record" {
   zone_id = var.cloudflare_zone_id
-  name    = "tm"
+  name    = "encord"
   type    = "CNAME"
   value   = aws_lb.threat_model_app_lb.dns_name
   ttl     = 300
