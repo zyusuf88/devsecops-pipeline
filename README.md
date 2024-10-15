@@ -1,4 +1,4 @@
-# Threat Modeling Tool Single Page App (SPA)
+# Threat Modeling Tool Single Page App (SPA) [![CI/CD Pipeline](https://github.com/zyusuf88/threat-composer/actions/workflows/main.yml/badge.svg)](https://github.com/zyusuf88/threat-composer/actions/workflows/main.yml)
 
 Built on top of the Threat Composer Tool by Amazon (<https://awslabs.github.io/threat-composer/workspaces/default/dashboard>)
 This version consolidates the 2 original projects (threat-composer & threat-composer-app)  into a single project and removes the 3rd project entirely (threat-composer-infra) as we will be using a different deployment topology.
