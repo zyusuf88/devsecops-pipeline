@@ -163,14 +163,14 @@ resource "aws_lb_listener" "https_listener" {
 
 
 data "aws_acm_certificate" "cert" {
-  domain   = "encord.zeynabyusuf.com"
+  domain   = "eurobase.zeynabyusuf.com"
   statuses = ["ISSUED"]
 }
 
 
 resource "cloudflare_dns_record" "alb_cname_record" {
   zone_id = var.cloudflare_zone_id
-  name    = "encord"
+  name    = "eurobase"
   type    = "CNAME"
   content = aws_lb.threat_model_app_lb.dns_name
   ttl     = 300
