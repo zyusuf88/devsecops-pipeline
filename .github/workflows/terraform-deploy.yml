@@ -1,0 +1,60 @@
+name: Terraform deployment 
+on:
+  workflow_dispatch: 
+    inputs:
+      confirm_destory:
+        description: Type "yes" to confirm infrastructure destruction'
+        required: true 
+        type: string
+
+env:
+  AWS_REGION: ${{ secrets.AWS_REGION }}
+
+permissions:
+    contents: read
+    pull-requests: write
+
+jobs:
+  terraform:
+    name: 'Terraform Deploy'
+    runs-on: ubuntu-latest
+    if: github.event.inputs.confirm_deploy == 'yes'
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Checkov Security Scan
+      uses: bridgecrewio/checkov-action@master
+      with:
+        directory: ./terraform  
+        framework: terraform
+
+
+
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ env.AWS_REGION }}
+
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v2
+      with:
+        terraform_version: ${{ env.TERRAFORM_VERSION }}
+
+    - name: Terraform Init
+      run: terraform init -reconfigure -backend-config="backend.hcl"
+
+    - name: Terraform Format
+      run: terraform fmt -check
+
+    - name: Terraform Plan
+      run: terraform plan -no-color
+
+    - name: Terraform Apply
+      run: terraform apply -auto-approve
+
+
+        
