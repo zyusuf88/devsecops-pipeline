@@ -43,6 +43,9 @@ jobs:
     - name: Terraform Destroy
       run: terraform destroy -auto-approve
 
+    - name: Terraform Destroy alb first
+      run: terraform destroy -target="module.alb.aws_lb.this" -auto-approve
+
     - name: Destroy Confirmation
       if: success()
       run: echo "Infrastructure has been successfully destroyed!"
