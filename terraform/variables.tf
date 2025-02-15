@@ -8,10 +8,6 @@ variable "domain_name" {
   type        = string
 }
 
-# variable "zone_name" {
-#   description = "The Route 53 hosted zone name"
-#   type        = string
-# }
 
 variable "record_name" {
   description = "The subdomain or record name (e.g., tm)"
@@ -27,20 +23,18 @@ variable "vpc_cidr" {
 variable "az_1" {
   description = "Availability Zone for first public subnet"
   type        = string
+  default = "eu-west-2a" 
 }
 
 variable "az_2" {
   description = "Availability Zone for second public subnet"
   type        = string
+  default = "eu-west-2b" 
 }
 
 variable "region" {
   default = "eu-west-2"
 }
-# variable "cert_region" {
-#   description = "region for acm cert"
-#   default = "us-east-1"
-# }
 
 variable "public_subnet_1" {
   description = "CIDR block for first public subnet"
