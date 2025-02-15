@@ -5,6 +5,7 @@ resource "aws_security_group" "this" {
   description = "Security group for application"
 
   ingress {
+    description = "http access"
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
@@ -14,6 +15,7 @@ resource "aws_security_group" "this" {
   }
 
   ingress {
+     description = "allow outbound traffic" 
     from_port   = 443
     to_port     = 443
     protocol    = "tcp"
