@@ -23,6 +23,7 @@ resource "aws_security_group" "this" {
   }
 
   ingress {
+    description = "allow container access"
     from_port   = 3000
     to_port     = 3000
     protocol    = "tcp"
@@ -30,6 +31,7 @@ resource "aws_security_group" "this" {
   }
 
   egress {
+    description = "outbound traffic"
     from_port   = 0
     to_port     = 0
     protocol    = "-1"

@@ -1,6 +1,11 @@
 
 resource "aws_ecs_cluster" "threat_app_cluster" {
   name = "threat-app-cluster"
+ #checkov requirement
+  setting {
+    name  = "containerInsights"
+    value = "enabled"
+  }
 }
 
 resource "aws_ecs_task_definition" "this" {
@@ -21,6 +26,8 @@ resource "aws_ecs_task_definition" "this" {
       memoryReservation    = 512
       essential            = true
       user                 = "root"
+      readonlyRootFilesystem = true
+
 
  
       portMappings = [
