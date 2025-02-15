@@ -29,7 +29,7 @@ jobs:
       with:
         directory: ./terraform  
         framework: terraform
-        skip_check: CKV_AWS_192,CKV2_AWS_31,CKV_AWS_21,CKV_AWS_145,CKV_AWS_145,CKV2_AWS_11,CKV_AWS_18,CKV2_AWS_62,CKV2_AWS_61,CKV_AWS_144,CKV2_AWS_12,CKV2_AWS_260,CKV2_AWS_5 # skipping non critical checkov checks for testing env - to be added in prod
+        skip_check: CKV_AWS_192,CKV2_AWS_31,CKV_AWS_21,CKV_AWS_145,CKV2_AWS_11,CKV_AWS_18,CKV2_AWS_62,CKV2_AWS_61,CKV_AWS_144,CKV2_AWS_12,CKV_AWS_260,CKV2_AWS_5 # skipping non critical checkov checks for testing env - to be added in prod
 
 
 
