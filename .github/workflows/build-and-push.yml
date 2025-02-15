@@ -1,18 +1,21 @@
 name: Build and Push to ECR
 
 on:
-  workflow_dispatch:
+ workflow_dispatch:
     inputs:
+      repository_name:
+        description: 'ECR Repository Name'
+        required: true
+        type: string
       image_tag:
-        description: Docker image tag
+        description: 'Docker image tag'
         required: true
         default: 'latest'
         type: string
 
 env:
   AWS_REGION: ${{ secrets.AWS_REGION }}
-  ECR_REPOSITORY: ${{ secrets.ECR_REPOSITORY }}
-  ECR_REGISTRY: ${{ secrets.ECR_REGISTRY }}
+  ECR_REGISTRY: ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com
 
 jobs:
   build:
@@ -30,14 +33,21 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ${{ env.AWS_REGION }}
 
+    - name: Create ECR Repository if not exists
+      run: |
+       aws ecr describe-repositories --repository-names ${{ github.event.inputs.repository_name }} || \
+       aws ecr create-repository --repository-name ${{ github.event.inputs.repository_name }}
+  
+
     - name: Login to Amazon ECR
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
 
     - name: Build, tag, and push image to ECR
       env:
+        REPOSITORY_NAME: ${{ github.event.inputs.repository_name }}
         IMAGE_TAG: ${{ github.event.inputs.image_tag }}
       run: |
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-        echo "Image successfully pushed to ECR"
+        echo "Image successfully pushed to ECR: $ECR_REGISTRY/$REPOSITORY_NAME:$IMAGE_TAG"
