@@ -1,10 +1,13 @@
 resource "aws_lb" "this" {
-  drop_invalid_header_fields = true 
   name               = "app-lb"
   internal           = false
   load_balancer_type = "application"
   security_groups    = [var.security_group_id]
   subnets            = var.public_subnet_ids
+
+  #checkov requirement 
+  drop_invalid_header_fields = true 
+  enable_deletion_protection = true 
 
   tags = {
     Name = "app-lb"
