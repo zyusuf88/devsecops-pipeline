@@ -37,14 +37,14 @@ jobs:
     - name: Terraform Init
       run: terraform init -reconfigure -backend-config="backend.hcl"
 
-    - name: Terraform Plan Destroy
-      run: terraform plan -destroy -no-color
+    - name: Terraform Destroy alb first
+      working-directory: ./terraform
+      run: terraform destroy -target="module.alb.aws_lb.this" -auto-approve
 
     - name: Terraform Destroy
+      working-directory: ./terraform
       run: terraform destroy -auto-approve
 
-    - name: Terraform Destroy alb first
-      run: terraform destroy -target="module.alb.aws_lb.this" -auto-approve
 
     - name: Destroy Confirmation
       if: success()

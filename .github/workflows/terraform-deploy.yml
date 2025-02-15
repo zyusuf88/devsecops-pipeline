@@ -58,9 +58,12 @@ jobs:
             -backend-config="encrypt=true"
 
     - name: Terraform Plan
-      run: terraform plan -no-color
+      working-directory: ./terraform
+      run: |
+       terraform plan input=false -out=tfplan
 
     - name: Terraform Apply
+      working-directory: ./terraform
       run: terraform apply -auto-approve
 
 
