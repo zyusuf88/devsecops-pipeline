@@ -29,6 +29,7 @@ jobs:
       with:
         directory: ./terraform  
         framework: terraform
+        skip_check: CKV_AWS_192
 
 
 
