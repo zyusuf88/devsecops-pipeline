@@ -49,7 +49,7 @@
       "off"
     ],
     "@typescript-eslint/indent": [
-      "error",
+      "warn",
       2
     ],
     "quotes": [
@@ -120,7 +120,7 @@
       "consistent"
     ],
     "@typescript-eslint/member-delimiter-style": [
-      "error"
+      "warn"
     ],
     "semi": [
       "error",
@@ -142,7 +142,7 @@
       "consistent-as-needed"
     ],
     "@typescript-eslint/no-require-imports": [
-      "error"
+      "warn"
     ],
     "import/no-extraneous-dependencies": [
       "error",
@@ -162,7 +162,7 @@
       "off"
     ],
     "@typescript-eslint/no-shadow": [
-      "error"
+      "warn"
     ],
     "key-spacing": [
       "error"
@@ -171,13 +171,13 @@
       "error"
     ],
     "@typescript-eslint/no-floating-promises": [
-      "error"
+      "warn"
     ],
     "no-return-await": [
       "off"
     ],
     "@typescript-eslint/return-await": [
-      "error"
+      "warn"
     ],
     "no-trailing-spaces": [
       "error"

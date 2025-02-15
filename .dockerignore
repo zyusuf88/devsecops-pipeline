@@ -3,3 +3,8 @@ node_modules
 .gitignore
 Dockerfile
 .dockerignore
+.DS_Store
+.env
+npm-debug.log
+yarn-debug.log
+yarn-error.log

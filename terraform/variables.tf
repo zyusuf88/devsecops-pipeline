@@ -1,25 +1,71 @@
-variable "cloudflare_api_token" {
-  description = "API token for Cloudflare"
+variable "project_name" {
+  description = "Project name prefix"
   type        = string
 }
 
-variable "cloudflare_zone_id" {
-  description = "Cloudflare Zone ID for the domain"
-  type        = string
-}
-variable "threat_app_container_image" {
-  description = "URI for the threat app in ECR"
+variable "domain_name" {
+  description = "Domain name for the application"
   type        = string
 }
 
-variable "acm_certificate_arn" {
-  description = "The ARN of the ACM certificate to use for HTTPS"
+# variable "zone_name" {
+#   description = "The Route 53 hosted zone name"
+#   type        = string
+# }
+
+variable "record_name" {
+  description = "The subdomain or record name (e.g., tm)"
   type        = string
 }
 
+variable "vpc_cidr" {
+  description = "CIDR block for VPC"
+  type        = string
+  default     = "10.0.0.0/16"
+}
+
+variable "az_1" {
+  description = "Availability Zone for first public subnet"
+  type        = string
+}
+
+variable "az_2" {
+  description = "Availability Zone for second public subnet"
+  type        = string
+}
 
 variable "region" {
-  description = "aws region"
+  default = "eu-west-2"
+}
+# variable "cert_region" {
+#   description = "region for acm cert"
+#   default = "us-east-1"
+# }
+
+variable "public_subnet_1" {
+  description = "CIDR block for first public subnet"
   type        = string
-  default     = "eu-west-2"
+  default     = "10.0.1.0/24"  
+}
+
+variable "public_subnet_2" {
+  description = "CIDR block for second public subnet"
+  type        = string
+  default     = "10.0.2.0/24" 
+}
+
+variable "allowed_cidr_blocks" {
+  description = "List of CIDR blocks allowed to access the services"
+  type        = list(string)
+  default     = ["0.0.0.0/0"]  
+}
+
+variable "execution_role_arn" {
+  description = "ARN of the ECS task execution role"
+  type        = string
+}
+
+variable "task_role_arn" {
+  description = "ARN of the ECS task role"
+  type        = string
 }

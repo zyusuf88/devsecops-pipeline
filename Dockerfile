@@ -5,6 +5,8 @@ RUN yarn install --frozen-lockfile
 COPY . .
 RUN yarn build 
 
+
+
 FROM nginx:alpine
 RUN addgroup -S zeynab-user && adduser -S zeynab-user -G zeynab-user
 

@@ -4,7 +4,7 @@ import DiagramInfo from './index';
 describe('DiagramInfo', () => {
   it('renders without error', () => {
     waitFor(() => {
-        render(<DiagramInfo />);
-    }, { timeout: 1000});
+      render(<DiagramInfo />);
+    }, { timeout: 1000 });
   });
 });

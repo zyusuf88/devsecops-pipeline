@@ -14,12 +14,6 @@ provider "aws" {
   
 }
 
-# provider "aws" {
-#   alias  = "us_east_1"
-#   region = var.cert_region
-# }
-
-
 
 data "aws_secretsmanager_secret" "terraform_state_bucket" {
   name = "terraform-state-bucket"

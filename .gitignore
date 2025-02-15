@@ -39,9 +39,11 @@ jspm_packages/
 .terragrunt*
 /test-reports
 
+backend.hcl
+
 # Local .terraform directories
 **/.terraform/*
-
+.terraform.lock.hcl
 # .tfstate files
 *.tfstate
 *.tfstate.*

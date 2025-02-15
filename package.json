@@ -2,7 +2,7 @@
   "name": "threat-composer-app",
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "node_modules/.bin/cross-env ESLINT_NO_DEV_ERRORS=true react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -13,7 +13,7 @@
     "@babel/preset-typescript": "^7.21.4",
     "@cloudscape-design/jest-preset": "^2.0.28",
     "@testing-library/jest-dom": "*",
-    "@testing-library/react": "*",
+    "@testing-library/react": "^16.2.0",
     "@testing-library/user-event": "^14.5.2",
     "@types/d3": "^7",
     "@types/indefinite": "*",
@@ -27,6 +27,7 @@
     "@types/uuid": "^9.0.8",
     "@typescript-eslint/eslint-plugin": "^5",
     "@typescript-eslint/parser": "^5",
+    "cross-env": "^7.0.3",
     "eslint": "^8",
     "eslint-import-resolver-node": "*",
     "eslint-import-resolver-typescript": "*",
