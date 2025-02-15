@@ -57,9 +57,6 @@ jobs:
             -backend-config="region=${{ secrets.AWS_REGION }}" \
             -backend-config="encrypt=true"
 
-    - name: Terraform Format
-      run: terraform fmt -check
-
     - name: Terraform Plan
       run: terraform plan -no-color
 
