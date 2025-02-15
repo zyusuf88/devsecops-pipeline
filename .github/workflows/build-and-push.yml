@@ -4,11 +4,11 @@ on:
  workflow_dispatch:
     inputs:
       repository_name:
-        description: 'ECR Repository Name'
+        description: 'Enter the ECR Repository Name'
         required: true
         type: string
       image_tag:
-        description: 'Docker image tag'
+        description: 'Enter a Docker image tag'
         required: true
         default: 'latest'
         type: string

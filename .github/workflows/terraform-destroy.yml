@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       confirm_destroy:
-        description: 'Type "destroy-all" to confirm infrastructure destruction'
+        description: 'Type "destroy" to confirm infrastructure destruction'
         required: true
         type: string
 
@@ -16,7 +16,7 @@ jobs:
   terraform:
     name: 'Terraform Destroy'
     runs-on: ubuntu-latest
-    if: github.event.inputs.confirm_destroy == 'destroy-all'
+    if: github.event.inputs.confirm_destroy == 'destroy'
 
     steps:
     - name: Checkout

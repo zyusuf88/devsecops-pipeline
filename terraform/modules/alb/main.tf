@@ -6,8 +6,13 @@ resource "aws_lb" "this" {
   subnets            = var.public_subnet_ids
 
   #checkov requirement 
-  drop_invalid_header_fields = true 
-  enable_deletion_protection = true 
+  drop_invalid_header_fields = true  
+  enable_deletion_protection = false # set to false for testing purposes
+
+    access_logs {
+    bucket  = aws_s3_bucket.alb_logs.id
+    enabled = true
+  }
 
   tags = {
     Name = "app-lb"
@@ -68,3 +73,4 @@ resource "aws_lb_listener" "https_listener" {
     
 }
 }
+
