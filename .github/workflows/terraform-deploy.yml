@@ -1,9 +1,9 @@
-name: Terraform deployment 
+name: Terraform Deployment 
 on:
   workflow_dispatch: 
     inputs:
-      confirm_destory:
-        description: Type "yes" to confirm infrastructure destruction'
+      confirm_deploy:
+        description: Type "yes" to confirm deployment'
         required: true 
         type: string
 
