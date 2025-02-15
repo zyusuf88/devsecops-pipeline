@@ -60,7 +60,14 @@ jobs:
     - name: Terraform Plan
       working-directory: ./terraform
       run: |
-       terraform plan -input=false -out=tfplan
+        terraform plan \
+          -var="domain_name=${{ vars.DOMAIN_NAME }}" \
+          -var="project_name=${{ vars.PROJECT_NAME }}" \
+          -var="task_role_arn=${{ secrets.TASK_ROLE_ARN }}" \
+          -var="execution_role_arn=${{ secrets.EXECUTION_ROLE_ARN }}" \
+           -var="record_name=${{ vars.RECORD_NAME }}" \
+          -input=false \
+          -out=tfplan
 
     - name: Terraform Apply
       working-directory: ./terraform
