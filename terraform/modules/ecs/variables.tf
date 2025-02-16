@@ -2,7 +2,10 @@ variable "container_image" {
   description = "ECR Image for the container"
   type        = string
 }
-
+variable "certificate_arn" {
+  description = "The ARN of the ACM certificate"
+  type        = string
+}
 
 variable "execution_role_arn" {
   description = "ARN of the ECS task execution role"
@@ -25,14 +28,33 @@ variable "subnet_ids" {
 }
 
 
+variable "domain_name" {
+  default = "tm.yzeynab.com"
+}
+
 variable "vpc_id" {
   description = "VPC ID where the ALB will be deployed"
+  type        = string
+}
+
+variable "project_name" {
+  description = "Project name prefix"
+  type        = string
+}
+
+variable "alb_dns_name" {
+  description = "DNS name of the ALB"
   type        = string
 }
 
 variable "target_group_arn" {
   description = "ARN of the ALB target group"
   type        = string
+}
+
+variable "alb_listener" {
+  description = "ALB HTTPS listener"
+  type        = any  
 }
 
 variable "http_listener_arn" {
