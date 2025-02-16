@@ -20,7 +20,7 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
@@ -35,6 +35,7 @@ jobs:
         terraform_version: 1.3.0
 
     - name: Terraform Init
+      working-directory: ./terraform
       run: terraform init -reconfigure -backend-config="backend.hcl"
 
     - name: Terraform Destroy alb first
