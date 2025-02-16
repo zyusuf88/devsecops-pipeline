@@ -19,7 +19,7 @@ resource "aws_ecs_task_definition" "this" {
 
   container_definitions = jsonencode([
     {
-      name                 = "tm-container"
+      name                 = "threat-app-1"
       image                = var.container_image
       cpu                  = 256
       memory               = 1024
@@ -65,7 +65,7 @@ resource "aws_ecs_service" "this" {
 
   load_balancer {
     target_group_arn = var.target_group_arn
-    container_name   = "tm-container"
+    container_name   = "threat-app-1"
     container_port   = 3000
   }
 

@@ -4,6 +4,7 @@ resource "aws_lb" "this" {
   load_balancer_type = "application"
   security_groups    = [var.security_group_id]
   subnets            = var.public_subnet_ids
+ 
 
   #checkov requirement 
   drop_invalid_header_fields = true  
