@@ -63,3 +63,7 @@ variable "task_role_arn" {
   description = "ARN of the ECS task role"
   type        = string
 }
+
+variable "container_image" {
+  type = string
+}

@@ -26,7 +26,7 @@ resource "aws_ecs_task_definition" "this" {
       memoryReservation    = 512
       essential            = true
       user                 = "root"
-      readonlyRootFilesystem = true
+    # readonlyRootFilesystem = true  
 
 
  
@@ -58,7 +58,7 @@ resource "aws_ecs_service" "this" {
   launch_type     = "FARGATE"
 
   network_configuration {
-    assign_public_ip = false
+    assign_public_ip = true
     subnets         = var.subnet_ids
     security_groups = [var.security_group_id]
   }

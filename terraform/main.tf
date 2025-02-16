@@ -45,6 +45,7 @@ module "ecs" {
   alb_listener = module.alb.https_listener
   task_role_arn      = var.task_role_arn
   execution_role_arn = var.execution_role_arn
+  container_image = var.container_image
 }
 
 

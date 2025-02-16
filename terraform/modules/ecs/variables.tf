@@ -1,6 +1,7 @@
 variable "container_image" {
   description = "ECR Image for the container"
   type        = string
+
 }
 variable "certificate_arn" {
   description = "The ARN of the ACM certificate"
