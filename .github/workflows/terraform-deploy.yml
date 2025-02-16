@@ -57,6 +57,10 @@ jobs:
             -backend-config="region=${{ secrets.AWS_REGION }}" \
             -backend-config="encrypt=true"
 
+    - name: Terraform Validate
+      working-directory: ./terraform
+      run: terraform validate
+
     - name: Terraform Plan
       working-directory: ./terraform
       run: |
