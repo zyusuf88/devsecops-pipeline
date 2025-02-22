@@ -40,7 +40,7 @@ jspm_packages/
 /test-reports
 
 backend.hcl
-
+tsconfig.dev.json
 # Local .terraform directories
 **/.terraform/*
 .terraform.lock.hcl

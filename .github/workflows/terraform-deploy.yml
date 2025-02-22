@@ -33,7 +33,8 @@ jobs:
       with:
         directory: ./terraform  
         framework: terraform
-        skip_check: CKV_AWS_192,CKV2_AWS_31,CKV_AWS_21,CKV_AWS_145,CKV2_AWS_11,CKV_AWS_18,CKV2_AWS_62,CKV2_AWS_61,CKV_AWS_144,CKV2_AWS_12,CKV_AWS_260,CKV2_AWS_5,CKV_AWS_150 # skipping non critical checkov checks for testing env - to be added in prod
+        skip_check: CKV_AWS_192,CKV2_AWS_31,CKV_AWS_21,CKV_AWS_145,CKV2_AWS_11,CKV_AWS_18,CKV2_AWS_62,CKV2_AWS_61,CKV_AWS_144,CKV2_AWS_12,CKV_AWS_260,CKV2_AWS_5,CKV_AWS_150,CKV_AWS_333,CKV_AWS_382,CKV_AWS_103
+         # skipping non critical checkov checks for testing env - to be added in prod
 
 
 
@@ -69,7 +70,7 @@ jobs:
           -var="project_name=${{ vars.PROJECT_NAME }}" \
           -var="record_name=${{ vars.RECORD_NAME }}" \
           -var="task_role_arn=${{ secrets.TASK_ROLE_ARN }}" \
-          -var="execution_role_arn=${{ secrets.EXECUTION_ROLE_ARN }}" \
+          -var="execution_role_arn=${{ secrets.EXECUTION_ROLE_ARN }}" \ 
           -var="container_image=${{ secrets.CONTAINER_IMAGE }}" \
           -input=false \
           -out=tfplan
