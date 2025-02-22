@@ -34,23 +34,23 @@ jobs:
       with:
         terraform_version: 1.3.0
 
-    - name: Terraform Init
-      working-directory: ./terraform
-      run: >
-            terraform init \
-              -backend-config="bucket=${{ secrets.TERRAFORM_STATE_BUCKET }}" \
-              -backend-config="key=${{ secrets.TERRAFORM_STATE_KEY }}" \
-              -backend-config="region=${{ secrets.AWS_REGION }}" \
-              -backend-config="encrypt=true"
+    # - name: Terraform Init
+    #   working-directory: ./terraform
+    #   run: >
+    #         terraform init \
+    #           -backend-config="bucket=${{ secrets.TERRAFORM_STATE_BUCKET }}" \
+    #           -backend-config="key=${{ secrets.TERRAFORM_STATE_KEY }}" \
+    #           -backend-config="region=${{ secrets.AWS_REGION }}" \
+    #           -backend-config="encrypt=true"
   
 
-    # - name: Terraform Destroy alb first
-    #   working-directory: ./terraform
-    #   run: terraform destroy -target="module.alb.aws_lb.this" -parallelism=30 -auto-approve
+    - name: Terraform Destroy alb first
+      working-directory: ./terraform
+      run: terraform destroy -target="module.alb.aws_lb.this" -auto-approve
 
     - name: Terraform Destroy
       working-directory: ./terraform
-      run: terraform destroy -parallelism=30 -auto-approve
+      run: terraform destroy -auto-approve
 
 
     - name: Destroy Confirmation
