@@ -44,9 +44,9 @@ jobs:
               -backend-config="encrypt=true"
   
 
-    - name: Terraform Destroy alb first
-      working-directory: ./terraform
-      run: terraform destroy -target="module.alb.aws_lb.this" -parallelism=30 -auto-approve
+    # - name: Terraform Destroy alb first
+    #   working-directory: ./terraform
+    #   run: terraform destroy -target="module.alb.aws_lb.this" -parallelism=30 -auto-approve
 
     - name: Terraform Destroy
       working-directory: ./terraform
