@@ -46,11 +46,11 @@ jobs:
 
     - name: Terraform Destroy alb first
       working-directory: ./terraform
-      run: terraform destroy -target="module.alb.aws_lb.this" -auto-approve
+      run: terraform destroy -target="module.alb.aws_lb.this" -parallelism=30 -auto-approve
 
     - name: Terraform Destroy
       working-directory: ./terraform
-      run: terraform destroy -auto-approve
+      run: terraform destroy -parallelism=30 -auto-approve
 
 
     - name: Destroy Confirmation
