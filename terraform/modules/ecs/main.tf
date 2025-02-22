@@ -12,7 +12,7 @@ resource "aws_ecs_task_definition" "this" {
   family                   = "threat-app-td"
   network_mode             = "awsvpc"
   requires_compatibilities = ["FARGATE"]
-  task_role_arn       = var.task_role_arn
+ # task_role_arn       = var.task_role_arn
   execution_role_arn  = var.execution_role_arn
   cpu                     = 512
   memory                  = 1024
@@ -25,8 +25,18 @@ resource "aws_ecs_task_definition" "this" {
       memory               = 1024
       memoryReservation    = 512
       essential            = true
-      user                 = "root"
-    # readonlyRootFilesystem = true  
+
+    logConfiguration = {
+          logDriver = "awslogs"
+          options = {
+            "awslogs-group"         = "/ecs/threat-app"
+            "awslogs-region"        = "eu-west-2"
+            "awslogs-stream-prefix" = "ecs"
+            "awslogs-create-group"  = "true"
+          }
+
+    }
+      
 
 
  
@@ -58,7 +68,7 @@ resource "aws_ecs_service" "this" {
   launch_type     = "FARGATE"
 
   network_configuration {
-    assign_public_ip = true
+   assign_public_ip = true
     subnets         = var.subnet_ids
     security_groups = [var.security_group_id]
   }

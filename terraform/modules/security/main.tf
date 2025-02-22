@@ -16,7 +16,7 @@ resource "aws_security_group" "this" {
   }
 
   ingress {
-     description = "allow outbound traffic" 
+     description = "allow inbound traffic" 
     from_port   = 443
     to_port     = 443
     protocol    = "tcp"
