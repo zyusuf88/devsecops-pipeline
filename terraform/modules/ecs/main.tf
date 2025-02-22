@@ -26,19 +26,6 @@ resource "aws_ecs_task_definition" "this" {
       memoryReservation    = 512
       essential            = true
 
-    logConfiguration = {
-          logDriver = "awslogs"
-          options = {
-            "awslogs-group"         = "/ecs/threat-app"
-            "awslogs-region"        = "eu-west-2"
-            "awslogs-stream-prefix" = "ecs"
-            "awslogs-create-group"  = "true"
-          }
-
-    }
-      
-
-
  
       portMappings = [
         {
