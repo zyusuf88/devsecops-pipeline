@@ -52,16 +52,29 @@ jobs:
           -Dsonar.projectName=${{ vars.PROJECT_NAME }}
           -Dsonar.organization=${{ vars.SONAR_ORGANIZATION }}
           -Dsonar.sources=.
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
     - name: Install Rust
       run: |
-          curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-          source $HOME/.cargo/env
-    - name: Run Checkov
+       curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+        echo "$HOME/.cargo/bin" >> $GITHUB_PATH
+
+    - name: Verify Rust Installation
+      run: rustc --version
+
+    - name: Install rustworkx before Checkov
       run: |
-        pip install --upgrade pip
-        pip install --prefer-binary checkov
-        checkov -d terraform
-        
+       pip install rustworkx
+       pip install --upgrade pip
+       pip install --prefer-binary checkov
+
+    - name: Run Checkov
+      run: checkov -d terraform
+
 
     - name: Checkov Security Scan
       uses: bridgecrewio/checkov-action@v2
