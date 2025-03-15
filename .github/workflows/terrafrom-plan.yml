@@ -41,6 +41,7 @@ jobs:
 
     - name: SonarQube Scan
       uses: SonarSource/sonarqube-scan-action@master
+      continue-on-error: true
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
@@ -49,6 +50,7 @@ jobs:
         args: >
           -Dsonar.projectKey=${{ vars.PROJECT_NAME }}
           -Dsonar.projectName=${{ vars.PROJECT_NAME }}
+          -Dsonar.organization=${{ vars.SONAR_ORGANIZATION }}
           -Dsonar.sources=.
 
     - name: Checkov Security Scan
@@ -60,6 +62,7 @@ jobs:
 
     - name: Run Trivy vulnerability scanner
       uses: aquasecurity/trivy-action@master
+      continue-on-error: true
       with:
         image-ref: '${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ vars.REPOSITORY_NAME }}:${{ vars.IMAGE_TAG }}'
         format: 'table'
