@@ -73,15 +73,8 @@ jobs:
        pip install --prefer-binary checkov
 
     - name: Run Checkov
-      run: checkov -d terraform
+      run: checkov -d .
 
-
-    - name: Checkov Security Scan
-      uses: bridgecrewio/checkov-action@v2
-      with:
-        directory: ./terraform  
-        framework: terraform
-        soft_fail: true
 
     - name: Run Trivy vulnerability scanner
       uses: aquasecurity/trivy-action@master
