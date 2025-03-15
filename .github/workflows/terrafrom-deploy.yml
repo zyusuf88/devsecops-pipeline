@@ -52,7 +52,10 @@ jobs:
           -Dsonar.projectName=${{ vars.PROJECT_NAME }}
           -Dsonar.organization=${{ vars.SONAR_ORGANIZATION }}
           -Dsonar.sources=.
- 
+    - name: Install Rust
+      run: |
+          curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+          source $HOME/.cargo/env
     - name: Run Checkov
       run: |
         pip install checkov
