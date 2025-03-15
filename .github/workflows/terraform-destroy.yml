@@ -43,21 +43,27 @@ jobs:
               -backend-config="region=${{ secrets.AWS_REGION }}" \
               -backend-config="encrypt=true"
 
-    - name: Terraform Plan Destroy
-      working-directory: ./terraform
-      run: terraform plan -destroy -out=tfdestroyplan        
-  
-
     - name: Terraform Destroy alb first
       working-directory: ./terraform
       run: |
-       terraform destroy -target="module.alb.aws_lb.this" -auto-approve \
-         -var="container_image=${{ secrets.CONTAINER_IMAGE }}" \
-        -var="domain_name=${{ vars.DOMAIN_NAME }}" \
-        -var="project_name=${{ vars.PROJECT_NAME }}" \
-        -var="record_name=${{ vars.RECORD_NAME }}" \
-        -var="task_role_arn=${{ secrets.TASK_ROLE_ARN }}" \
-        -var="execution_role_arn=${{ secrets.EXECUTION_ROLE_ARN }}"
+              terraform destroy -target="module.alb.aws_lb.this" -auto-approve \
+                -var="container_image=${{ secrets.CONTAINER_IMAGE }}" \
+                -var="domain_name=${{ vars.DOMAIN_NAME }}" \
+                -var="project_name=${{ vars.PROJECT_NAME }}" \
+                -var="record_name=${{ vars.RECORD_NAME }}" \
+                -var="task_role_arn=${{ secrets.TASK_ROLE_ARN }}" \
+                -var="execution_role_arn=${{ secrets.EXECUTION_ROLE_ARN }}"}
+            
+    - name: Terraform Plan Destroy (After ALB)
+      working-directory: ./terraform
+      run: |
+                terraform plan -destroy -out=tfdestroyplan \
+                  -var="container_image=${{ secrets.CONTAINER_IMAGE }}" \
+                  -var="domain_name=${{ vars.DOMAIN_NAME }}" \
+                  -var="project_name=${{ vars.PROJECT_NAME }}" \
+                  -var="record_name=${{ vars.RECORD_NAME }}" \
+                  -var="task_role_arn=${{ secrets.TASK_ROLE_ARN }}" \
+                  -var="execution_role_arn=${{ secrets.EXECUTION_ROLE_ARN }}"
 
     - name: Terraform Destroy
       working-directory: ./terraform
