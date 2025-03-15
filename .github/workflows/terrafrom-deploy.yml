@@ -52,6 +52,12 @@ jobs:
           -Dsonar.projectName=${{ vars.PROJECT_NAME }}
           -Dsonar.organization=${{ vars.SONAR_ORGANIZATION }}
           -Dsonar.sources=.
+ 
+    - name: Run Checkov
+      run: |
+        pip install checkov
+        checkov -d terraform
+        
 
     - name: Checkov Security Scan
       uses: bridgecrewio/checkov-action@v2
