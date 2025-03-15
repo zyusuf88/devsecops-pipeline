@@ -7,12 +7,11 @@ on:
         required: true
         type: string
 
-env:
-  AWS_REGION: ${{ secrets.AWS_REGION }}
-
 permissions:
   contents: read
   pull-requests: write
+  actions: write
+  secrets: read 
 
 jobs:
   terraform:
@@ -26,21 +25,21 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: ${{ env.AWS_REGION }}
+        aws-region: ${{ secrets.AWS_REGION }}
 
     - name: Login to Amazon ECR
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
 
     - name: SonarQube Scan
-      uses: SonarSource/sonarqube-scan-action@master
+      uses: SonarSource/sonarqube-scan-action@v1
       continue-on-error: true
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
@@ -54,7 +53,7 @@ jobs:
           -Dsonar.sources=.
 
     - name: Checkov Security Scan
-      uses: bridgecrewio/checkov-action@master
+      uses: bridgecrewio/checkov-action@v2
       with:
         directory: ./terraform  
         framework: terraform
@@ -98,8 +97,12 @@ jobs:
           -out=tfplan
 
     - name: Save Plan Artifact
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: terraform-plan
         path: terraform/tfplan
         retention-days: 1
+
+    - name: Verify Plan file
+      run: ls -la terraform
+      
