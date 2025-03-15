@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       confirm_plan:
-        description: 'Type "plan" to confirm generating a plan'
+        description: 'Type "deploy" to confirm generating a deploy'
         required: true
         type: string
 
