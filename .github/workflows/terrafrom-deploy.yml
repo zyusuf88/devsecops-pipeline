@@ -111,7 +111,7 @@ jobs:
           -var="execution_role_arn=${{ secrets.EXECUTION_ROLE_ARN }}" \
           -var="container_image=${{ secrets.CONTAINER_IMAGE }}" \
           -input=false \
-          -out=terraform/tfplan
+          -out=tfplan
 
   terraform_apply:
     name: 'Terraform Apply'
@@ -137,4 +137,4 @@ jobs:
       run: |
         terraform apply \
           -input=false \
-          terraform/tfplan
+          tfplan
