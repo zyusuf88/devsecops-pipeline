@@ -3,14 +3,6 @@ name: Terraform Destroy Workflow
 on:
   workflow_dispatch:
     inputs:
-      destroy_type:
-        description: 'Select destroy type'
-        required: true
-        type: choice
-        options:
-          - targeted_alb_destroy
-          - full_destroy
-        default: 'targeted_alb_destroy'
       confirm_destroy:
         description: 'Type "destroy" to confirm destruction'
         required: true
@@ -21,10 +13,10 @@ permissions:
   actions: write
 
 jobs:
-  targeted_alb_destroy:
-    name: 'Targeted destroy'
+  alb_destroy:
+    name: 'Destroy ALB'
     runs-on: ubuntu-latest
-    if: github.event.inputs.destroy_type == 'targeted_alb_destroy' && github.event.inputs.confirm_destroy == 'destroy'
+    if: github.event.inputs.confirm_destroy == 'destroy'
     
     defaults:
       run:
@@ -73,7 +65,8 @@ jobs:
   full_destroy:
     name: 'Full destroy'
     runs-on: ubuntu-latest
-    if: github.event.inputs.destroy_type == 'full_destroy' && github.event.inputs.confirm_destroy == 'destroy'
+    needs: alb_destroy
+    if: github.event.inputs.confirm_destroy == 'destroy'
     
     defaults:
       run:
