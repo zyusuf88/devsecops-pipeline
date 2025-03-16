@@ -7,6 +7,10 @@ on:
         description: 'Type "deploy" to confirm generating a deploy'
         required: true
         type: string
+      container_image:
+       description: 'Full ECR image URI with tag (e.g., 123456789012.dkr.ecr.us-east-1.amazonaws.com/my-app:latest)'
+       required: true
+       type: string
 
 permissions:
   contents: read
@@ -132,7 +136,7 @@ jobs:
           -var="record_name=${{ vars.RECORD_NAME }}" \
           -var="task_role_arn=${{ secrets.TASK_ROLE_ARN }}" \
           -var="execution_role_arn=${{ secrets.EXECUTION_ROLE_ARN }}" \
-          -var="container_image=${{ secrets.CONTAINER_IMAGE }}" \
+          -var="container_image=${{ github.event.inputs.container_image }}" \
           -input=false \
           -out=tfplan
     
