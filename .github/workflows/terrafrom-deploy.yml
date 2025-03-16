@@ -40,7 +40,7 @@ jobs:
     
     - name: Login to Amazon ECR
       id: login-ecr
-      uses: aws-actions/amazon-ecr-login@v1
+      uses: aws-actions/amazon-ecr-login@v2
     
     - name: SonarQube Scan
       uses: SonarSource/sonarqube-scan-action@v1
@@ -110,7 +110,7 @@ jobs:
     
     - name: Login to Amazon ECR
       id: login-ecr
-      uses: aws-actions/amazon-ecr-login@v1
+      uses: aws-actions/amazon-ecr-login@v2
     
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
@@ -170,7 +170,7 @@ jobs:
     
     - name: Login to Amazon ECR
       id: login-ecr
-      uses: aws-actions/amazon-ecr-login@v1
+      uses: aws-actions/amazon-ecr-login@v2
     
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2

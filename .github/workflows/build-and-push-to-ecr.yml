@@ -13,7 +13,7 @@ on:
         default: 'node-app'
         type: string
       image_tag:
-        description: 'Image tag (e.g., latest, v1.0.0, staging) - leave empty to use commit SHA'
+        description: 'Image tag (e.g., latest, v1.0.0, staging) - if left blank, a tag will be assigned'
         required: false
         type: string
 
@@ -37,7 +37,7 @@ jobs:
     
     - name: Login to Amazon ECR
       id: login-ecr
-      uses: aws-actions/amazon-ecr-login@v1
+      uses: aws-actions/amazon-ecr-login@v2
     
     - name: Generate image tag
       id: set-tag
@@ -131,7 +131,7 @@ jobs:
         IMAGE_TAG: ${{ needs.build.outputs.image_tag }}
       run: |
         docker load -i /tmp/docker-images/image.tar
-        
+
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
   
         docker tag $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG $ECR_REGISTRY/$ECR_REPOSITORY:latest
