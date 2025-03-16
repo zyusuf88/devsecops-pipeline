@@ -127,6 +127,16 @@ jobs:
     
     - name: Terraform Validate
       run: terraform validate
+
+    - name: Refresh Terraform State
+      run: |
+        terraform refresh \
+          -var="domain_name=${{ vars.DOMAIN_NAME }}" \
+          -var="project_name=${{ vars.PROJECT_NAME }}" \
+          -var="record_name=${{ vars.RECORD_NAME }}" \
+          -var="task_role_arn=${{ secrets.TASK_ROLE_ARN }}" \
+          -var="execution_role_arn=${{ secrets.EXECUTION_ROLE_ARN }}" \
+          -var="container_image=${{ github.event.inputs.container_image }}"
     
     - name: Terraform Plan
       run: |
