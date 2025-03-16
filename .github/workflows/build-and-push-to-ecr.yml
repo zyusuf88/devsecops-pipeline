@@ -110,6 +110,10 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ${{ secrets.AWS_REGION }}
     
+    - name: Create ECR Repository
+      run: |
+        aws ecr create-repository --repository-name ${{ github.event.inputs.ecr_repository }} || true
+    
     - name: Login to Amazon ECR
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
@@ -128,9 +132,7 @@ jobs:
       run: |
         docker load -i /tmp/docker-images/image.tar
         
-        # Push image with unique tag
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-        
-        # Tag and push as latest
+  
         docker tag $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG $ECR_REGISTRY/$ECR_REPOSITORY:latest
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
