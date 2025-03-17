@@ -25,7 +25,6 @@ This project sets up a **reliable, secure and scalable infrastructure** for the 
 - **Modular, Reusable Components** - Deploy any containerized application with minimal configuration changes
 - **Complete Lifecycle Management** - Build, scan, deploy, and clean up with purpose-built workflows
 - **IaC** - Terraform modules designed for maximum flexibility and reusability
-# Threat Modeling Tool - Terraform Infrastructure Setup
 
 ## Comprehensive Security Framework
 The pipeline implements a defense-in-depth security approach:
@@ -43,16 +42,16 @@ The Dockerfile implements several container best practices: **multi-stage builds
 > Small container images load faster, consume less bandwidth and present a reduced attack surface for improved security.
 
 ## Manual Triggers
-
 ![Manual Triggers ](https://github.com/user-attachments/assets/e5c99585-a0b2-4249-bc0d-a991b58ef842)
-Manual triggers are essential because:
+
+### Manual triggers are essential because:
 
 - **Deployment safety** - Explicit confirmation prevents accidental deployments to production environments
 - **Version control** - Direct specification of container images ensures the right version gets deployed
 - **Process flexibility** - Allows for human judgment when needed without sacrificing automation
 
 
-## Build and Push to ECR Workflow [![Build and Push to ECR](https://github.com/zyusuf88/threat-composer/actions/workflows/build-and-push-to-ecr.yml/badge.svg)](https://github.com/zyusuf88/threat-composer/actions/workflows/build-and-push-to-ecr.yml) 
+## 1. Build and Push to ECR Workflow [![Build and Push to ECR](https://github.com/zyusuf88/threat-composer/actions/workflows/build-and-push-to-ecr.yml/badge.svg)](https://github.com/zyusuf88/threat-composer/actions/workflows/build-and-push-to-ecr.yml) 
 ![Build and Push workflow](https://github.com/user-attachments/assets/9dbd92a3-a866-4408-865b-298f4bc4c950)
 
 | Stage | Description |
@@ -62,8 +61,8 @@ Manual triggers are essential because:
 | **Push to ECR** | Gets your image into ECR with proper tagging, creating the repo if needed. |
 
 
-## Deploy Workflow [![Terraform Deploy](https://github.com/zyusuf88/threat-composer/actions/workflows/terrafrom-deploy.yml/badge.svg)](https://github.com/zyusuf88/threat-composer/actions/workflows/terrafrom-deploy.yml)
-(![ITerraform Deploymage](https://github.com/user-attachments/assets/5add6df7-386e-493d-845a-16ba7dc116e1))
+## 2. Deploy Workflow [![Terraform Deploy](https://github.com/zyusuf88/threat-composer/actions/workflows/terrafrom-deploy.yml/badge.svg)](https://github.com/zyusuf88/threat-composer/actions/workflows/terrafrom-deploy.yml)
+![ITerraform Deploymage](https://github.com/user-attachments/assets/5add6df7-386e-493d-845a-16ba7dc116e1)
 
 | Stage | Description |
 |-------|-------------|
@@ -73,7 +72,7 @@ Manual triggers are essential because:
 
 
 
-## Destroy Workflow [![Terraform Destroy](https://github.com/zyusuf88/threat-composer/actions/workflows/terraform-destroy.yml/badge.svg)](https://github.com/zyusuf88/threat-composer/actions/workflows/terraform-destroy.yml)
+## 3. Destroy Workflow [![Terraform Destroy](https://github.com/zyusuf88/threat-composer/actions/workflows/terraform-destroy.yml/badge.svg)](https://github.com/zyusuf88/threat-composer/actions/workflows/terraform-destroy.yml)
 
 ![Terraform Destroy](https://github.com/user-attachments/assets/d19a8cc1-fb9e-4c0c-9341-d10e4709620c)
 
@@ -95,6 +94,6 @@ To implement a similar solution, you would need:
 
 ## License
 
-This project is proprietary and is not available for public use or distribution without express permission.
+This project is proprietary and is not available for public use or distribution without express permission. See the [LICENSE](./Licence) file for details.
 
 Copyright © 2025 Zeynab Yusuf
