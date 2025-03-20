@@ -1,12 +1,25 @@
-# Threat Modeling Tool Single Page App (SPA) [![Terraform Deploy](https://github.com/zyusuf88/threat-composer/actions/workflows/terrafrom-deploy.yml/badge.svg)](https://github.com/zyusuf88/threat-composer/actions/workflows/terrafrom-deploy.yml)
+# DevSecOps-Pipeline [![Terraform Deploy](https://github.com/zyusuf88/threat-composer/actions/workflows/terrafrom-deploy.yml/badge.svg)](https://github.com/zyusuf88/threat-composer/actions/workflows/terrafrom-deploy.yml)
 
-This project delivers a **complete** CI/CD pipeline that revolutionises how you deploy containerised applications to AWS ECS. Built with **modularity** and **reusability** at its core, it streamlines the entire deployment lifecycle with **repeatable** workflow.
+This project is a **fully automated DevSecOps pipeline** that makes deploying containerised applications to AWS ECS simple and reliable. Built with **modularity** and **reusability** at its core, it ensures that vulnerabilities are caught early, infrastructure is provisioned securely and deployments run smoothly with **minimal manual effort.**
 
-### The best part...
- The infrastructure provides a truly end-to-end solution with secure HTTPS, ALB, Target Groups, ECS Services and all necessary networking components in the terraform code meaning you can deploy virtually any containerised application through this pipeline without modifying the underlying code—just change the Docker image and everything else adapts automatically.
+![Image](https://github.com/user-attachments/assets/cb8033fa-b8a8-453f-9281-aff4f9365ffc)
 
-![image](https://github.com/user-attachments/assets/2fec4aea-6e1b-4278-926c-1ebf4a9b702a)
 
+ The infrastructure provides a truly **end-to-end solution** with secure HTTPS, ALB, Target Groups, ECS Services and all necessary networking components in the terraform code meaning you can deploy virtually any containerised application through this pipeline without modifying the underlying code just change the Docker image and variables in Github actions
+
+- [x] **End-to-End Automation** - From container building to infrastructure provisioning and teardown, everything runs with a single click
+- [x] **Security** - Multiple layers of protection with Trivy, Checkov, and SonarQube catch vulnerabilities before they reach production
+- [x] **Modular, Reusable Components** - Deploy any containerized application with minimal configuration changes
+- [x] **Complete Lifecycle Management** - Build, scan, deploy, and clean up with purpose-built workflows
+- [x] **IaC** - Terraform modules designed for maximum flexibility and reusability
+
+## Comprehensive Security Framework
+The pipeline implements a defense-in-depth security approach:
+
+- [x] **Trivy** - Container vulnerability scanning for CVE detection and remediation
+- [x] **Checkov** - Infrastructure-as-Code static analysis to enforce security best practices
+- [x] **SonarQube** - Code quality and security scanning for continuous inspection
+- [x] **WAF Integration** - OWASP Top 10 protection with AWS Web Application Firewall
 
 | Category | Technologies |
 |----------|-------------|
@@ -16,29 +29,12 @@ This project delivers a **complete** CI/CD pipeline that revolutionises how you 
 | **Security Scanning** | Trivy (containers), Checkov (IaC), SonarQube (code quality)  |
 | **Containerisation** | Docker - multistage builds, Alpine images, nonroot user execution |
 
-# Why This Project is transformative 
-
-This project sets up a **reliable, secure and scalable infrastructure** for the Threat Modeling Tool using **Terraform**. It’s designed to make deployment smooth, enable secure HTTPS access and provide a custom domain for easy access.
-
-- **End-to-End Automation** - From container building to infrastructure provisioning and teardown, everything runs with a single click
-- **Security** - Multiple layers of protection with Trivy, Checkov, and SonarQube catch vulnerabilities before they reach production
-- **Modular, Reusable Components** - Deploy any containerized application with minimal configuration changes
-- **Complete Lifecycle Management** - Build, scan, deploy, and clean up with purpose-built workflows
-- **IaC** - Terraform modules designed for maximum flexibility and reusability
-
-## Comprehensive Security Framework
-The pipeline implements a defense-in-depth security approach:
-
-- **Trivy** - Container vulnerability scanning for CVE detection and remediation
-- **Checkov** - Infrastructure-as-Code static analysis to enforce security best practices
-- **SonarQube** - Code quality and security scanning for continuous inspection
-- **WAF Integration** - OWASP Top 10 protection with AWS Web Application Firewall
 
 ## DockerFile 
 
 The Dockerfile implements several container best practices: **multi-stage builds** separate the build environment from the runtime, **non-root user execution** enhances security and **dependency caching** optimising the build times.It also includes **proper file permissions** and uses **Alpine-based images** to minimise security footprint.
 
-> **Note**
+> [!TIP]
 > Small container images load faster, consume less bandwidth and present a reduced attack surface for improved security.
 
 ## Manual Triggers
@@ -97,3 +93,4 @@ To implement a similar solution, you would need:
 This project is proprietary and is not available for public use or distribution without express permission. See the [LICENSE](./Licence) file for details.
 
 Copyright © 2025 Zeynab Yusuf
+
