@@ -2,7 +2,7 @@
 
 This project is a **fully automated DevSecOps pipeline** that makes deploying containerised applications to AWS ECS simple and reliable. Built with **modularity** and **reusability** at its core, it ensures that vulnerabilities are caught early, infrastructure is provisioned securely and deployments run smoothly with **minimal manual effort.**
 
-![Image](https://github.com/user-attachments/assets/cb8033fa-b8a8-453f-9281-aff4f9365ffc)
+![Image](https://github.com/user-attachments/assets/b0f49fa4-a010-47df-935b-669d1cbc23e5)
 
 
  The infrastructure provides a truly **end-to-end solution** with secure HTTPS, ALB, Target Groups, ECS Services and all necessary networking components in the terraform code meaning you can deploy virtually any containerised application through this pipeline without modifying the underlying code just change the Docker image and variables in Github actions
