@@ -23,13 +23,13 @@ variable "vpc_cidr" {
 variable "az_1" {
   description = "Availability Zone for first public subnet"
   type        = string
-  default = "eu-west-2a" 
+  default = "eu-west-2a"
 }
 
 variable "az_2" {
   description = "Availability Zone for second public subnet"
   type        = string
-  default = "eu-west-2b" 
+  default = "eu-west-2b"
 }
 
 variable "region" {
@@ -39,19 +39,19 @@ variable "region" {
 variable "public_subnet_1" {
   description = "CIDR block for first public subnet"
   type        = string
-  default     = "10.0.1.0/24"  
+  default     = "10.0.1.0/24"
 }
 
 variable "public_subnet_2" {
   description = "CIDR block for second public subnet"
   type        = string
-  default     = "10.0.2.0/24" 
+  default     = "10.0.2.0/24"
 }
 
 variable "allowed_cidr_blocks" {
   description = "List of CIDR blocks allowed to access the services"
   type        = list(string)
-  default     = ["0.0.0.0/0"]  
+  default     = ["0.0.0.0/0"]
 }
 
 variable "execution_role_arn" {

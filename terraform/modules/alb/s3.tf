@@ -13,7 +13,7 @@ resource "aws_s3_bucket_policy" "alb_logs" {
       {
         Effect = "Allow"
         Principal = {
-          AWS = "arn:aws:iam::652711504416:root" 
+          AWS = "arn:aws:iam::652711504416:root"
         }
         Action = "s3:PutObject"
         Resource = "${aws_s3_bucket.alb_logs.arn}/*"

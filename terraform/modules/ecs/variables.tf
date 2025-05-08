@@ -55,7 +55,7 @@ variable "target_group_arn" {
 
 variable "alb_listener" {
   description = "ALB HTTPS listener"
-  type        = any  
+  type        = any
 }
 
 variable "http_listener_arn" {

@@ -46,4 +46,3 @@ DiagramContextProviderProps & LocalStateContextProviderBaseProps<DiagramInfo>>> 
 };
 
 export default DiagramLocalStateContextProvider;
-

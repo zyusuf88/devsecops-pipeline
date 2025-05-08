@@ -28,4 +28,3 @@ export const threatFieldTypeMapping: {
   impacted_goal: 'impactedGoal',
   impacted_assets: 'impactedAssets',
 };
-

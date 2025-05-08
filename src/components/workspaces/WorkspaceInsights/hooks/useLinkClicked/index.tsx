@@ -28,4 +28,3 @@ const useLinkClicked = () => {
 };
 
 export default useLinkClicked;
-

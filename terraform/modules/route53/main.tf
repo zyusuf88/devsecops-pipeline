@@ -10,4 +10,3 @@ resource "aws_route53_record" "this" {
   ttl     = 300
   records = [var.alb_dns_name]
 }
-

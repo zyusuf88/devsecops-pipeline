@@ -35,4 +35,3 @@ export default ExampleContextProvider;
 export {
   useExampleContext,
 };
-

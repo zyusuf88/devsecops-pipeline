@@ -22,26 +22,26 @@ jobs:
     name: 'Security Checks'
     runs-on: ubuntu-latest
     if: github.event.inputs.confirm_plan == 'deploy'
-    
+
     defaults:
       run:
         working-directory: ./terraform
-    
+
     steps:
     - name: Checkout
       uses: actions/checkout@v4
-      
+
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ${{ secrets.AWS_REGION }}
-    
+
     - name: Login to Amazon ECR
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v2
-    
+
     - name: SonarQube Scan
       uses: SonarSource/sonarqube-scan-action@v1
       continue-on-error: true
@@ -55,29 +55,29 @@ jobs:
           -Dsonar.projectName=${{ vars.PROJECT_NAME }}
           -Dsonar.organization=${{ vars.SONAR_ORGANIZATION }}
           -Dsonar.sources=.
-    
+
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
         python-version: '3.10'
-    
+
     - name: Install Rust
       run: |
         curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
         echo "$HOME/.cargo/bin" >> $GITHUB_PATH
-    
+
     - name: Verify Rust Installation
       run: rustc --version
-    
+
     - name: Install rustworkx before Checkov
       run: |
         pip install rustworkx
         pip install --upgrade pip
         pip install --prefer-binary checkov
-    
+
     - name: Run Checkov
       run: checkov -d . --soft-fail
-    
+
     - name: Run Trivy vulnerability scanner
       uses: aquasecurity/trivy-action@master
       continue-on-error: true
@@ -92,31 +92,31 @@ jobs:
     runs-on: ubuntu-latest
     needs: security_checks
     if: github.event.inputs.confirm_plan == 'deploy'
-    
+
     defaults:
       run:
         working-directory: ./terraform
-    
+
     steps:
     - name: Checkout
       uses: actions/checkout@v4
-    
+
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ${{ secrets.AWS_REGION }}
-    
+
     - name: Login to Amazon ECR
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v2
-    
+
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
       with:
         terraform_version: 1.5.0
-    
+
     - name: Terraform Init
       run: |
         terraform init \
@@ -124,7 +124,7 @@ jobs:
           -backend-config="key=${{ secrets.TERRAFORM_STATE_KEY }}" \
           -backend-config="region=${{ secrets.AWS_REGION }}" \
           -backend-config="encrypt=true"
-    
+
     - name: Terraform Validate
       run: terraform validate
 
@@ -137,7 +137,7 @@ jobs:
           -var="task_role_arn=${{ secrets.TASK_ROLE_ARN }}" \
           -var="execution_role_arn=${{ secrets.EXECUTION_ROLE_ARN }}" \
           -var="container_image=${{ github.event.inputs.container_image }}"
-    
+
     - name: Terraform Plan
       run: |
         terraform plan \
@@ -149,7 +149,7 @@ jobs:
           -var="container_image=${{ github.event.inputs.container_image }}" \
           -input=false \
           -out=tfplan
-    
+
     - name: Upload Terraform Plan
       uses: actions/upload-artifact@v4
       with:
@@ -162,31 +162,31 @@ jobs:
     runs-on: ubuntu-latest
     needs: terraform_plan
     if: github.event.inputs.confirm_plan == 'deploy'
-    
+
     defaults:
       run:
         working-directory: ./terraform
-    
+
     steps:
     - name: Checkout
       uses: actions/checkout@v4
-    
+
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ${{ secrets.AWS_REGION }}
-    
+
     - name: Login to Amazon ECR
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v2
-    
+
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
       with:
         terraform_version: 1.5.0
-    
+
     - name: Terraform Init
       run: |
         terraform init \
@@ -194,13 +194,13 @@ jobs:
           -backend-config="key=${{ secrets.TERRAFORM_STATE_KEY }}" \
           -backend-config="region=${{ secrets.AWS_REGION }}" \
           -backend-config="encrypt=true"
-    
+
     - name: Download Terraform Plan
       uses: actions/download-artifact@v4
       with:
         name: terraform-plan
         path: ./terraform
-    
+
     - name: Terraform Apply
       run: |
         terraform apply -input=false tfplan

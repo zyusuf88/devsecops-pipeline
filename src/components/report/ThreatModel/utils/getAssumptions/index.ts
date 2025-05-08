@@ -75,4 +75,3 @@ export const getAssumptionsContent = async (
 
   return rows.join('\n');
 };
-

@@ -54,4 +54,3 @@ MitigationsContextProviderProps & LocalStateContextProviderBaseProps<Mitigation[
 };
 
 export default MitigationsLocalStateContextProvider;
-

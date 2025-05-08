@@ -3,7 +3,7 @@ WORKDIR /app
 COPY package*.json yarn.lock ./
 RUN yarn install --frozen-lockfile --production=false
 COPY . .
-RUN yarn build 
+RUN yarn build
 
 
 
@@ -19,11 +19,7 @@ RUN chown -R appuser:appgroup /usr/share/nginx/html \
     /var/run \
     /var/log/nginx \
     /etc/nginx
-        
+
 USER appuser
 EXPOSE 3000
-CMD ["nginx", "-g", "daemon off;"]     
-
-
-
-
+CMD ["nginx", "-g", "daemon off;"]

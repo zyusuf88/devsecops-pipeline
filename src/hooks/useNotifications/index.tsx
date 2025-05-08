@@ -23,4 +23,3 @@ const useNotifications = (addPadding?: boolean) => {
 };
 
 export default useNotifications;
-

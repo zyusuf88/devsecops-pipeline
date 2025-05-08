@@ -23,22 +23,22 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       image_tag: ${{ steps.set-tag.outputs.tag }}
-    
+
     steps:
     - name: Checkout Code
       uses: actions/checkout@v4
-    
+
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ${{ secrets.AWS_REGION }}
-    
+
     - name: Login to Amazon ECR
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v2
-    
+
     - name: Generate image tag
       id: set-tag
       run: |
@@ -48,7 +48,7 @@ jobs:
         else
           echo "tag=${{ github.event.inputs.image_tag }}" >> $GITHUB_OUTPUT
         fi
-    
+
     - name: Build and tag image
       env:
         ECR_REGISTRY: ${{ github.event.inputs.ecr_registry }}
@@ -57,11 +57,11 @@ jobs:
       run: |
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         echo "Built image: $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
-        
+
         # Save image to a tar file
         mkdir -p /tmp/docker-images
         docker save $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -o /tmp/docker-images/image.tar
-    
+
     - name: Upload Docker image
       uses: actions/upload-artifact@v4
       with:
@@ -73,14 +73,14 @@ jobs:
     name: 'Security Scan'
     runs-on: ubuntu-latest
     needs: build
-    
+
     steps:
     - name: Download Docker image
       uses: actions/download-artifact@v4
       with:
         name: docker-image
         path: /tmp/docker-images
-    
+
     - name: Load Docker image
       env:
         ECR_REGISTRY: ${{ github.event.inputs.ecr_registry }}
@@ -88,7 +88,7 @@ jobs:
         IMAGE_TAG: ${{ needs.build.outputs.image_tag }}
       run: |
         docker load -i /tmp/docker-images/image.tar
-    
+
     - name: Run Trivy scan
       env:
         ECR_REGISTRY: ${{ github.event.inputs.ecr_registry }}
@@ -101,7 +101,7 @@ jobs:
     name: 'Push to ECR'
     runs-on: ubuntu-latest
     needs: [build, scan]
-    
+
     steps:
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
@@ -109,21 +109,21 @@ jobs:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ${{ secrets.AWS_REGION }}
-    
+
     - name: Create ECR Repository
       run: |
         aws ecr create-repository --repository-name ${{ github.event.inputs.ecr_repository }} || true
-    
+
     - name: Login to Amazon ECR
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
-    
+
     - name: Download Docker image
       uses: actions/download-artifact@v4
       with:
         name: docker-image
         path: /tmp/docker-images
-    
+
     - name: Load Docker image and push
       env:
         ECR_REGISTRY: ${{ github.event.inputs.ecr_registry }}
@@ -133,6 +133,6 @@ jobs:
         docker load -i /tmp/docker-images/image.tar
 
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-  
+
         docker tag $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG $ECR_REGISTRY/$ECR_REPOSITORY:latest
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest

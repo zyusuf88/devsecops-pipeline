@@ -68,4 +68,3 @@ const MitigationsLocalStorageContextProvider: FC<PropsWithChildren<MitigationsCo
 };
 
 export default MitigationsLocalStorageContextProvider;
-

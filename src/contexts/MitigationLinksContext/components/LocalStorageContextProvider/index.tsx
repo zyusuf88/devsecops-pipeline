@@ -81,4 +81,3 @@ const MitigationLinksLocalStorageContextProvider: FC<PropsWithChildren<Mitigatio
 };
 
 export default MitigationLinksLocalStorageContextProvider;
-

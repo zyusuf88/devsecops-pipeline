@@ -47,4 +47,3 @@ ArchitectureContextProviderProps & LocalStateContextProviderBaseProps<Architectu
 };
 
 export default ArchitectureLocalStateContextProvider;
-

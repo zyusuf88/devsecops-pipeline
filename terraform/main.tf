@@ -14,7 +14,7 @@ module "security" {
   source = "./modules/security"
 
   project_name       = var.project_name
-  vpc_id            = module.vpc.vpc_id  
+  vpc_id            = module.vpc.vpc_id
   allowed_cidr_blocks = var.allowed_cidr_blocks
 }
 
@@ -23,9 +23,9 @@ module "alb" {
   source            = "./modules/alb"
   vpc_id            = module.vpc.vpc_id
   public_subnet_ids = module.vpc.public_subnets
-  security_group_id = module.security.security_group_id 
+  security_group_id = module.security.security_group_id
   certificate_arn   = module.acm.certificate_arn
-  project_name          = var.project_name  
+  project_name          = var.project_name
 
 }
 
@@ -36,10 +36,10 @@ module "ecs" {
   vpc_id                = module.vpc.vpc_id
   subnet_ids            = module.vpc.public_subnets
  security_group_id     = module.security.security_group_id
-  alb_dns_name          = module.alb.alb_dns_name  
+  alb_dns_name          = module.alb.alb_dns_name
   http_listener_arn      = module.alb.http_listener_arn
   https_listener_arn     = module.alb.https_listener_arn
-  target_group_arn      = module.alb.target_group_arn 
+  target_group_arn      = module.alb.target_group_arn
   certificate_arn       = module.acm.certificate_arn
   domain_name           = var.domain_name
   alb_listener = module.alb.https_listener
@@ -70,12 +70,3 @@ module "iam" {
   source = "./modules/iam"
   project_name = var.project_name
 }
-
-
-
-
-
-
-
-
-

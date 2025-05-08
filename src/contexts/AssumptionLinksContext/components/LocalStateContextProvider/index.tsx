@@ -66,4 +66,3 @@ AssumptionLinksContextProviderProps & LocalStateContextProviderBaseProps<Assumpt
 };
 
 export default AssumptionLinksLocalStorageContextProvider;
-

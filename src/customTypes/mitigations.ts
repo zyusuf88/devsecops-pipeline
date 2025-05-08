@@ -33,4 +33,3 @@ export const MitigationLinkSchema = EntityLinkBaseSchema.extend({
 }).strict();;
 
 export type MitigationLink = z.infer<typeof MitigationLinkSchema>;
-

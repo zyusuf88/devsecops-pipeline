@@ -18,5 +18,4 @@ variable "certificate_arn" {
 variable "domain_name" {
   description = "Domain name for the app"
   type        = string
-} 
-
+}

@@ -61,4 +61,3 @@ const ApplicationLocalStorageContextProvider: FC<PropsWithChildren<ApplicationCo
 };
 
 export default ApplicationLocalStorageContextProvider;
-

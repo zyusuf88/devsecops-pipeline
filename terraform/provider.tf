@@ -6,12 +6,12 @@ terraform {
     }
   }
 
-  backend "s3" {}  
+  backend "s3" {}
 }
 
 provider "aws" {
   region = var.region
-  
+
 }
 
 
@@ -30,11 +30,3 @@ data "aws_secretsmanager_secret" "terraform_lock_table" {
 data "aws_secretsmanager_secret_version" "terraform_lock_table" {
   secret_id = data.aws_secretsmanager_secret.terraform_lock_table.id
 }
-
-
-
-
-
-
-
-

@@ -61,4 +61,3 @@ const ArchitectureLocalStorageContextProvider: FC<PropsWithChildren<Architecture
 };
 
 export default ArchitectureLocalStorageContextProvider;
-

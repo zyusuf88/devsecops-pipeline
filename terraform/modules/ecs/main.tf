@@ -26,7 +26,7 @@ resource "aws_ecs_task_definition" "this" {
       memoryReservation    = 512
       essential            = true
 
- 
+
       portMappings = [
         {
           name           = "container-port"
@@ -75,4 +75,3 @@ depends_on = [var.http_listener_arn, var.https_listener_arn]
 
 
 }
-

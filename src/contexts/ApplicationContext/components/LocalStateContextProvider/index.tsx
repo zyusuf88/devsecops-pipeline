@@ -47,4 +47,3 @@ PropsWithChildren<ApplicationContextProviderProps & LocalStateContextProviderBas
 };
 
 export default ApplicationLocalStateContextProvider;
-

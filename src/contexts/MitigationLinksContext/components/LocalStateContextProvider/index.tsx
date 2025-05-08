@@ -66,4 +66,3 @@ MitigationLinksContextProviderProps & LocalStateContextProviderBaseProps<Mitigat
 };
 
 export default MitigationLinksLocalStateContextProvider;
-

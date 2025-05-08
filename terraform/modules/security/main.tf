@@ -11,12 +11,12 @@ resource "aws_security_group" "this" {
     to_port     = 80
     protocol    = "tcp"
     cidr_blocks = var.allowed_cidr_blocks
-  
-  
+
+
   }
 
   ingress {
-     description = "allow inbound traffic" 
+     description = "allow inbound traffic"
     from_port   = 443
     to_port     = 443
     protocol    = "tcp"

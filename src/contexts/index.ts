@@ -45,4 +45,3 @@ export { useWorkspacesContext } from './WorkspacesContext/context';
 
 export { default as WorkspaceContextAggregator } from './WorkspaceContextAggregator';
 export { default as ContextAggregator } from './ContextAggregator';
-

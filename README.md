@@ -30,7 +30,7 @@ The pipeline implements a defense-in-depth security approach:
 | **Containerisation** | Docker - multistage builds, Alpine images, nonroot user execution |
 
 
-## DockerFile 
+## DockerFile
 
 The Dockerfile implements several container best practices: **multi-stage builds** separate the build environment from the runtime, **non-root user execution** enhances security and **dependency caching** optimising the build times.It also includes **proper file permissions** and uses **Alpine-based images** to minimise security footprint.
 
@@ -47,7 +47,7 @@ The Dockerfile implements several container best practices: **multi-stage builds
 - **Process flexibility** - Allows for human judgment when needed without sacrificing automation
 
 
-## 1. Build and Push to ECR Workflow [![Build and Push to ECR](https://github.com/zyusuf88/threat-composer/actions/workflows/build-and-push-to-ecr.yml/badge.svg)](https://github.com/zyusuf88/threat-composer/actions/workflows/build-and-push-to-ecr.yml) 
+## 1. Build and Push to ECR Workflow [![Build and Push to ECR](https://github.com/zyusuf88/threat-composer/actions/workflows/build-and-push-to-ecr.yml/badge.svg)](https://github.com/zyusuf88/threat-composer/actions/workflows/build-and-push-to-ecr.yml)
 ![Build and Push workflow](https://github.com/user-attachments/assets/9dbd92a3-a866-4408-865b-298f4bc4c950)
 
 | Stage | Description |
@@ -93,4 +93,3 @@ To implement a similar solution, you would need:
 This project is proprietary and is not available for public use or distribution without express permission. See the [LICENSE](./Licence) file for details.
 
 Copyright © 2025 Zeynab Yusuf
-
